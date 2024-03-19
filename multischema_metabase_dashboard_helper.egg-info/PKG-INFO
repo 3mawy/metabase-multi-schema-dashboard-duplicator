@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: multischema-metabase-dashboard-helper
+Version: 0.1.0
+Summary: A Python client for duplicating Metabase dashboard for multi schemas
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+## multischema-metabase-dashboard-helper
+metabase multi tenant (schemas) helper to generate dashboards for all available schemas

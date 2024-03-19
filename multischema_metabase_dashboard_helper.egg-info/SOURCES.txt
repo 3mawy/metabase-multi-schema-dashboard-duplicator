@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.py
+metabase_api/__init__.py
+metabase_api/api_client.py
+metabase_api/utils.py
+multischema_metabase_dashboard_helper.egg-info/PKG-INFO
+multischema_metabase_dashboard_helper.egg-info/SOURCES.txt
+multischema_metabase_dashboard_helper.egg-info/dependency_links.txt
+multischema_metabase_dashboard_helper.egg-info/entry_points.txt
+multischema_metabase_dashboard_helper.egg-info/requires.txt
+multischema_metabase_dashboard_helper.egg-info/top_level.txt
