@@ -12,7 +12,7 @@ This Python package provides a convenient interface for interacting with the Met
 To use this package, you can install it via pip:
 
 ```bash
-pip install metabase-api-client
+pip install multischema-metabase-dashboard-helper
 ```
 
 ## Usage
