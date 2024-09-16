@@ -17,17 +17,22 @@ pip install multischema-metabase-dashboard-helper
 
 ## Usage
 
-Here's how you can use the Metabase API Client to copy and update dashboards:
+### **--> IMPORTANT NOTE <--**
+**You need to convert all the questions (cards) in the dashboard to sql before being able to use this to change the schema dynamically**
 
-Create a dashboard with one of the schemas you have available it will be used as the **template schema**
-including in the dashboard all the cards(questions) that you need to apply to the other schemas.
-this is the **from_dashboard_id** that we will use in the script 
+
+## Create dashboards Per topic
+update_dashboards_for_schemas: Duplicates a template dashboard across multiple schemas, ensuring each schema has a centralized dashboard that includes all card topics.
+This helps in maintaining a consistent dashboard layout across different schemas, with each schema's data displayed in a similar manner.
+Update dashboards for different schemas
+
+
+Using the GUI: 
+- create a dashboard with one of the schemas you have available it will be used as the **template schema**.
+- include in this dashboard all the cards(questions) that you need to apply to the other schemas. (this is the **from_dashboard_id** that we will use in the script). 
 
 **old_schema** field is the name of the schema that you choose as the **template schema**
 
-### **--> IMPORTANT NOTE <--**
-
-**You need to convert all the questions (cards) in the dashboard to sql before being able to use this to change the schema dynamically**
 
 ```python
 from metabase_api.metabase_api.api_client import MetabaseAPIClient
@@ -46,10 +51,32 @@ old_schema = "template_schema_name"
 # Initialize the Metabase API client
 api_client = MetabaseAPIClient(api_url, username, password, database_id)
 
-# Update dashboards for different schemas
+
 api_client.update_dashboards_for_schemas(from_dashboard_id, collection_id, collection_position, is_deep_copy, old_schema)
 ```
 
+## Create dashboards Per topic
+create_dashboards_for_topics: Creates new dashboards for each card topic, 
+consolidating all cards related to that topic into one dashboard per topic.
+This helps in organizing and visualizing data specific to each topic within a single dashboard.
+
+```python
+from metabase_api.metabase_api.api_client import MetabaseAPIClient
+
+# Set up API credentials and parameters
+api_url = "https://metabase.example.com"
+username = "your_username"
+password = "your_password"
+database_id = 2
+collection_id = 130   # Replace with the collection ID where you want to get the cards
+
+# Initialize the Metabase API client
+api_client = MetabaseAPIClient(api_url, username, password, database_id)
+
+cards = api_client.get_cards_in_collection(collection_id)
+if cards:
+    api_client.create_dashboards_for_topics(cards)
+```
 ## Documentation
 
 For detailed information about the methods and parameters provided by the `MetabaseAPIClient`, please refer to the source code comments and docstrings within the `metabase_api` package.
