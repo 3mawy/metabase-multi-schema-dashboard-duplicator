@@ -1,9 +1,99 @@
 Metadata-Version: 2.1
 Name: multischema-metabase-dashboard-helper
-Version: 0.1.0
+Version: 0.1.1
 Summary: A Python client for duplicating Metabase dashboard for multi schemas
 Description-Content-Type: text/markdown
 Requires-Dist: requests
 
-## multischema-metabase-dashboard-helper
-metabase multi tenant (schemas) helper to generate dashboards for all available schemas
+# Multi Schema Metabase Dashboard Helper
+
+This Python package provides a convenient interface for interacting with the Metabase API to automate tasks such as copying and updating dashboards based on different schemas.
+
+## Requirements
+
+- Python 3.x
+- requests library
+
+## Installation
+
+To use this package, you can install it via pip:
+
+```bash
+pip install multischema-metabase-dashboard-helper
+```
+
+## Usage
+
+### **--> IMPORTANT NOTE <--**
+**You need to convert all the questions (cards) in the dashboard to sql before being able to use this to change the schema dynamically**
+
+
+## Create dashboards Per topic
+update_dashboards_for_schemas: Duplicates a template dashboard across multiple schemas, ensuring each schema has a centralized dashboard that includes all card topics.
+This helps in maintaining a consistent dashboard layout across different schemas, with each schema's data displayed in a similar manner.
+Update dashboards for different schemas
+
+
+Using the GUI: 
+- create a dashboard with one of the schemas you have available it will be used as the **template schema**.
+- include in this dashboard all the cards(questions) that you need to apply to the other schemas. (this is the **from_dashboard_id** that we will use in the script). 
+
+**old_schema** field is the name of the schema that you choose as the **template schema**
+
+
+```python
+from metabase_api.metabase_api.api_client import MetabaseAPIClient
+
+# Set up API credentials and parameters
+api_url = "https://metabase.example.com"
+username = "your_username"
+password = "your_password"
+database_id = 2
+from_dashboard_id = 8  # Replace with the actual dashboard ID
+collection_id = 130   # Replace with the actual collection ID where you want to place the copied dashboard
+collection_position = 1
+is_deep_copy = True
+old_schema = "template_schema_name"
+
+# Initialize the Metabase API client
+api_client = MetabaseAPIClient(api_url, username, password, database_id)
+
+
+api_client.update_dashboards_for_schemas(from_dashboard_id, collection_id, collection_position, is_deep_copy, old_schema)
+```
+
+## Create dashboards Per topic
+create_dashboards_for_topics: Creates new dashboards for each card topic, 
+consolidating all cards related to that topic into one dashboard per topic.
+This helps in organizing and visualizing data specific to each topic within a single dashboard.
+
+```python
+from metabase_api.metabase_api.api_client import MetabaseAPIClient
+
+# Set up API credentials and parameters
+api_url = "https://metabase.example.com"
+username = "your_username"
+password = "your_password"
+database_id = 2
+collection_id = 130   # Replace with the collection ID where you want to get the cards
+
+# Initialize the Metabase API client
+api_client = MetabaseAPIClient(api_url, username, password, database_id)
+
+cards = api_client.get_cards_in_collection(collection_id)
+if cards:
+    api_client.create_dashboards_for_topics(cards)
+```
+## Documentation
+
+For detailed information about the methods and parameters provided by the `MetabaseAPIClient`, please refer to the source code comments and docstrings within the `metabase_api` package.
+
+## Note
+
+- Ensure that you replace placeholder values such as `api_url`, `username`, `password`, `database_id`, `from_dashboard_id`, `collection_id`, `collection_position`, and `old_schema` with your actual Metabase API credentials and parameters.
+- This package assumes familiarity with the Metabase API and its endpoints. Refer to the official Metabase API documentation for more information on available endpoints and their usage.
+
+## Disclaimer
+
+This package is provided as-is without any warranty.
+# metabase-multi-schema-dashboard-duplicator
