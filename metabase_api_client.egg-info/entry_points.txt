@@ -1,2 +1,0 @@
-[console_scripts]
-multischema-metabase-dashboard-helper = metabase_api.main:main
