@@ -27,15 +27,16 @@ This helps in maintaining a consistent dashboard layout across different schemas
 Update dashboards for different schemas
 
 
-Using the GUI: 
+First using the metabase GUI: 
 - create a dashboard with one of the schemas you have available it will be used as the **template schema**.
 - include in this dashboard all the cards(questions) that you need to apply to the other schemas. (this is the **from_dashboard_id** that we will use in the script). 
 
 **old_schema** field is the name of the schema that you choose as the **template schema**
 
+Then run the script
 
 ```python
-from metabase_api.metabase_api.api_client import MetabaseAPIClient
+from metabase_api.api_client import MetabaseAPIClient
 
 # Set up API credentials and parameters
 api_url = "https://metabase.example.com"
@@ -61,7 +62,7 @@ consolidating all cards related to that topic into one dashboard per topic.
 This helps in organizing and visualizing data specific to each topic within a single dashboard.
 
 ```python
-from metabase_api.metabase_api.api_client import MetabaseAPIClient
+from metabase_api.api_client import MetabaseAPIClient
 
 # Set up API credentials and parameters
 api_url = "https://metabase.example.com"
