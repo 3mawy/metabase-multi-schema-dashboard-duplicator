@@ -21,7 +21,7 @@ pip install multischema-metabase-dashboard-helper
 **You need to convert all the questions (cards) in the dashboard to sql before being able to use this to change the schema dynamically**
 
 
-## Create dashboards Per topic
+## Create dashboards Per schema
 update_dashboards_for_schemas: Duplicates a template dashboard across multiple schemas, ensuring each schema has a centralized dashboard that includes all card topics.
 This helps in maintaining a consistent dashboard layout across different schemas, with each schema's data displayed in a similar manner.
 Update dashboards for different schemas
