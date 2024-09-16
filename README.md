@@ -19,6 +19,12 @@ pip install multischema-metabase-dashboard-helper
 
 Here's how you can use the Metabase API Client to copy and update dashboards:
 
+Create a dashboard with one of the schemas you have available it will be used as the **template schema**
+including in the dashboard all the cards(questions) that you need to apply to the other schemas.
+this is the **from_dashboard_id** that we will use in the script 
+
+**old_schema** field is the name of the schema that you choose as the **template schema**
+
 ### **--> IMPORTANT NOTE <--**
 
 **You need to convert all the questions (cards) in the dashboard to sql before being able to use this to change the schema dynamically**
